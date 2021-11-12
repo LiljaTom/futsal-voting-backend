@@ -2,7 +2,7 @@ const jwt = require('jsonwebtoken');
 const playerRouter = require('express').Router();
 
 const Player = require('../models/player');
-const User = require('../models/user');
+
 
 playerRouter.post('/', async(req, res) => {
     const body = req.body;
@@ -16,13 +16,7 @@ playerRouter.post('/', async(req, res) => {
     const player = new Player(body);
     player.votes = 0;
 
-    const user = await User.findById(decodedToken.id);
-    player.user = user;
-
     const savedPlayer = await player.save();
-
-    user.players = user.players.concat(savedPlayer._id);
-    await user.save();
 
     res.status(201).json(savedPlayer);
 });
