@@ -24,6 +24,10 @@ voteRouter.post('/', async(req, res) => {
         return res.status(400).json({ error: 'You can vote only once' });
     }
 
+    if(body.first.toString() === body.second.toString() || body.first.toString() === body.third.toString() || body.third.toString() === body.second.toString()) {
+        return res.status(400).json({ error: 'You naughty boy'});
+    }
+
 
     const vote = new Vote(body);
 
@@ -49,7 +53,7 @@ voteRouter.post('/', async(req, res) => {
 });
 
 voteRouter.get('/', async(req, res) => {
-    const votes = await Vote.find({});
+    const votes = await Vote.find({}).populate('user');
     return res.json(votes.map(v => v.toJSON()));
 })
 
