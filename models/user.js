@@ -11,7 +11,17 @@ const userSchema = mongoose.Schema({
         required: true,
         unique: true
     },
-    passwordHash: String
+    passwordHash: String,
+    players: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Player'
+        }
+    ],
+    vote: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Vote'
+    }
 });
 
 userSchema.set('toJSON', {
