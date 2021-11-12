@@ -1,16 +1,16 @@
 const mongoose = require('mongoose');
 
 const voteSchema = mongoose.Schema({
-    threePoints: {
-        type: Number,
+    first: {
+        type: String,
         required: true
     },
-    twoPoints: {
-        type: Number,
+    second: {
+        type: String,
         required: true
     },
-    onePoint: {
-        type: Number,
+    third: {
+        type: String,
         required: true
     },
     user: {

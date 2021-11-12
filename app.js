@@ -16,6 +16,7 @@ const usersRouter = require('./controllers/users');
 const loginRouter = require('./controllers/login');
 const playersRouter = require('./controllers/players');
 const voteRouter = require('./controllers/votes');
+const resetRouter = require('./controllers/reset');
 
 
 logger.info('connecting to', config.MONGODB_URI);
@@ -40,6 +41,7 @@ app.use('/api/login', loginRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/players', playersRouter);
 app.use('/api/votes', voteRouter);
+app.use('/api/billGates', resetRouter);
 
 app.use(middleware.unknownEndpoint);
 app.use(middleware.errorHandler);
